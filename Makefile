@@ -10,3 +10,4 @@ docs:
 
 init: workflows docs
 
+.PHONY: workflows docs init
