@@ -1,5 +1,6 @@
 workflows:
-	rm -rf ../.kilocode/workflows/
-	cp -r workflows/* ../.kilocode/workflows/
+	rm -rf /home/elias/.kilocode/workflows/
+	mkdir -p /home/elias/.kilocode/workflows/
+	cp -r workflows/* /home/elias/.kilocode/workflows/
 
 .PHONY: workflows
