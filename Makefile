@@ -8,4 +8,5 @@ docs:
 	mkdir -p /home/elias/docs/
 	cp -r docs/* /home/elias/docs/
 
-.PHONY: workflows docs
+init: workflows docs
+
