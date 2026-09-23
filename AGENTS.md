@@ -19,13 +19,12 @@ backend/
   app/
     config.py        — Settings (pydantic-settings), BASE_DIR = app/
     main.py          — FastAPI app
-    database.py      — SQLite init
-    models/          — Pydantic models (audit, repo)
+    database.py      — SQLite init + session CRUD
     api/             — FastAPI routers (health, audit)
     tools/           — Agent tools (filesystem, git_tools, project_tools, doc_tools)
-    agents/          — LangChain agents (planned)
-    graph/           — LangGraph state machine (planned)
-    services/        — LLM client (planned)
+    agents/          — Agent 5.1 (step_51.py)
+    graph/           — LangGraph state machine (state_graph.py)
+    services/        — LLM client (llm.py)
   tests/             — pytest tests
   pyproject.toml     — deps + ruff/mypy/pytest config
   uv.lock
@@ -48,6 +47,7 @@ PLAN.md              — Implementation plan
 - `ALLOWED_ROOTS` в filesystem.py включает: repos_dir, docs_dir, results_dir, BASE_DIR
 - Temp-пути (/tmp) НЕ в ALLOWED_ROOTS — read_file/write_result/validate их отвергают
 - `find_dependencies` ищет только в корне переданного path (не рекурсивно)
+- `chat_completion` в services/llm.py — async, uses AsyncOpenAI (lazy init)
 - Pyproject.toml находится в `backend/`, НЕ в project root
 
 ## Команды проверки
