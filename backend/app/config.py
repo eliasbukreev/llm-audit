@@ -1,8 +1,6 @@
 from pathlib import Path
 
-from pydantic import AnyHttpUrl, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -17,16 +15,15 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
 
-    openrouter_api_url: AnyHttpUrl = (
-        "https://openrouter.ai/api/v1/chat/completions"
-    )
+    openrouter_api_url: str = "https://openrouter.ai/api/v1/chat/completions"
     openrouter_api_key: str = ""
     llm_model: str = "openai/deepseek-r1:free"
 
-    docs_dir: Path = BASE_DIR / "../docs"
-    results_dir: Path = BASE_DIR / "../results"
-    repos_dir: Path = BASE_DIR / "../repos-for-analysis"
+    docs_dir: Path = BASE_DIR.parent.parent / "docs"
+    results_dir: Path = BASE_DIR.parent.parent / "results"
+    repos_dir: Path = BASE_DIR.parent.parent / "repos-for-analysis"
     db_path: Path = BASE_DIR / "audit.db"
+    schema_path: Path = BASE_DIR.parent / "db" / "schema.sql"
 
 
 settings = Settings()

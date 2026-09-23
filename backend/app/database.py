@@ -1,6 +1,6 @@
-import os
 import sqlite3
 from contextlib import contextmanager
+
 from app.config import settings
 
 
@@ -13,7 +13,7 @@ def get_conn():
 
 
 def init_db():
-    schema_path = os.path.join(os.path.dirname(__file__), "db", "schema.sql")
+    schema_path = settings.schema_path
     with open(schema_path) as f:
         schema = f.read()
     with get_conn() as conn:
