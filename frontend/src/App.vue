@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import UrlInput from "./components/UrlInput.vue";
-import ProgressPanel from "./components/ProgressPanel.vue";
-import ResultViewer from "./components/ResultViewer.vue";
-import DownloadPanel from "./components/DownloadPanel.vue";
+import DownloadPanel from './components/DownloadPanel.vue'
+import ProgressPanel from './components/ProgressPanel.vue'
+import ResultViewer from './components/ResultViewer.vue'
+import UrlInput from './components/UrlInput.vue'
 </script>
 
 <template>
@@ -20,6 +20,6 @@ import DownloadPanel from "./components/DownloadPanel.vue";
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 </style>
