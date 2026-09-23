@@ -1,10 +1,15 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 
 router = APIRouter()
 
 
+class AuditStartRequest(BaseModel):
+    repo_url: str
+
+
 @router.post("/audit/start")
-async def start_audit(repo_url: str):
+async def start_audit(req: AuditStartRequest):
     return {"session_id": "placeholder"}
 
 
