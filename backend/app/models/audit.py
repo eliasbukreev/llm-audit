@@ -2,8 +2,6 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-from app.config import BASE_DIR, DOCS_DIR, RESULTS_DIR, REPOS_DIR, DB_PATH
-
 
 class AuditStep(BaseModel):
     id: str

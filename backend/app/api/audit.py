@@ -1,11 +1,14 @@
+import asyncio
+
 from fastapi import APIRouter
-from pydantic import BaseModel
+from pydantic import BaseModel, AnyHttpUrl
+from starlette.responses import StreamingResponse
 
 router = APIRouter()
 
 
 class AuditStartRequest(BaseModel):
-    repo_url: str
+    repo_url: AnyHttpUrl
 
 
 @router.post("/audit/start")
@@ -15,8 +18,6 @@ async def start_audit(req: AuditStartRequest):
 
 @router.get("/audit/{session_id}/stream")
 async def stream_audit(session_id: str):
-    from starlette.responses import StreamingResponse
-    import asyncio
 
     async def generator():
         while True:

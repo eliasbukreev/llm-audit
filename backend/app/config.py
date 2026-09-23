@@ -1,14 +1,32 @@
-import os
+from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+from pydantic import AnyHttpUrl, Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-HOST = os.getenv("HOST", "0.0.0.0")
-PORT = int(os.getenv("PORT", "8000"))
-OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
-LLM_MODEL = os.getenv("LLM_MODEL", "openai/deepseek-r1:free")
 
-DOCS_DIR = os.environ.get("DOCS_DIR", os.path.join(BASE_DIR, "..", "docs"))
-RESULTS_DIR = os.environ.get("RESULTS_DIR", os.path.join(BASE_DIR, "..", "results"))
-REPOS_DIR = os.environ.get("REPOS_DIR", os.path.join(BASE_DIR, "..", "repos-for-analysis"))
-DB_PATH = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "audit.db"))
+BASE_DIR = Path(__file__).resolve().parent
+
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
+
+    host: str = "0.0.0.0"
+    port: int = 8000
+
+    openrouter_api_url: AnyHttpUrl = (
+        "https://openrouter.ai/api/v1/chat/completions"
+    )
+    openrouter_api_key: str = ""
+    llm_model: str = "openai/deepseek-r1:free"
+
+    docs_dir: Path = BASE_DIR / "../docs"
+    results_dir: Path = BASE_DIR / "../results"
+    repos_dir: Path = BASE_DIR / "../repos-for-analysis"
+    db_path: Path = BASE_DIR / "audit.db"
+
+
+settings = Settings()

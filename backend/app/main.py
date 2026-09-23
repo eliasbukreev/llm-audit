@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from app.config import HOST, PORT
+from app.config import settings
 from app.database import init_db
 
 
