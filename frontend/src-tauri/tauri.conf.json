@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-config-schema/schema.json",
+  "productName": "llm-server-dib",
+  "version": "0.1.0",
+  "identifier": "com.llm-server-dib",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "cd ../frontend && pnpm dev",
+    "beforeBuildCommand": "cd ../frontend && pnpm build"
+  },
+  "app": {
+    "title": "Security Audit — ГОСТ Р 56939-2024",
+    "windows": [
+      {
+        "title": "Security Audit",
+        "width": 1280,
+        "height": 800
+      }
+    ],
+    "toolbar": true
+  },
+  "security": {
+    "csp": null
+  }
+}

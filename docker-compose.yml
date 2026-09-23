@@ -1,0 +1,33 @@
+version: "3.10"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - LLM_MODEL=${LLM_MODEL:-openai/deepseek-r1:free}
+    volumes:
+      - ./backend/app:/app/app:ro
+      - ./backend/pyproject.toml:/app/pyproject.toml:ro
+      - ./results:/app/results
+      - ./docs:/app/docs
+      - ./shared:/app/shared:ro
+    env_file:
+      - .env
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/src-tauri:/app/src-tauri
+      - ./shared:/app/shared:ro
+    environment:
+      - VITE_API_URL=http://localhost:8000
